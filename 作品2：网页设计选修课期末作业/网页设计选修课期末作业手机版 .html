@@ -1,0 +1,478 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>国产非标准设备原价手机端计算器</title>	
+
+<!-- meta使用viewport以确保页面可自由缩放 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- 引入 jQuery Mobile 样式 -->
+<link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+<!-- 引入 jQuery 库 -->
+<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<!-- 引入 jQuery Mobile 库 -->
+<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<script>
+//实现对表单输入的计算
+	function compute() 
+{ 
+    var a1 = document.forms[0].MDC.value; 
+    var a2 = document.forms[0].CLJ.value; 
+    var a3 = document.forms[0].JGS.value;
+    var a4 = document.forms[0].CAI.value;
+document.getElementById("cai").value = parseFloat(a1) * parseFloat(a2)*(1+parseFloat(a3)/100); 
+	
+    var b1 = document.forms[1].SBM.value; 
+    var b2 = document.forms[1].SBZ.value; 
+    var b3 = document.forms[1].JIA.value;
+document.getElementById("jia").value = parseFloat(b1) * parseFloat(b2); 	
+	
+    var c1 = document.forms[2].FZC.value; 
+    var c2 = document.forms[2].FU.value;
+document.getElementById("fu").value = parseFloat(c1) * parseFloat(b2); 	
+	
+    var d1 = document.forms[3].ZFL.value; 
+    var d2 = document.forms[3].ZHUAN.value;
+document.getElementById("zhuan").value = (parseFloat(a4)+parseFloat(b3)+parseFloat(c2))* parseFloat(d1)/100; 
+	
+    var e1 = document.forms[4].FFL.value; 
+    var e2 = document.forms[4].FEI.value;
+document.getElementById("fei").value = (parseFloat(a4)+parseFloat(b3)+parseFloat(c2)+parseFloat(d2))* parseFloat(e1)/100; 	
+	
+    var f1 = document.forms[5].WJ.value; 
+    var f2 = document.forms[5].WY.value;
+    var f3 = document.forms[5].WAI.value;	
+document.getElementById("wai").value = parseFloat(f1)+parseFloat(f2); 	
+	
+    var g1 = document.forms[6].BFL.value; 
+    var g2 = document.forms[6].BAO.value;
+document.getElementById("bao").value =(parseFloat(a4)+parseFloat(b3)+parseFloat(c2)+parseFloat(d2)+parseFloat(e2)+parseFloat(f3))* parseFloat(g1); 		
+	
+    var h1 = document.forms[7].LR.value; 
+    var h2 = document.forms[7].LI.value;
+document.getElementById("li").value =(parseFloat(a4)+parseFloat(b3)+parseFloat(c2)+parseFloat(d2)+parseFloat(e2)+parseFloat(g2))* parseFloat(h1); 			
+
+    var i1 = document.forms[8].ZZSL.value;
+    var i2 = document.forms[8].JXSE.value;
+    var i3 = document.forms[8].SHUI.value;	
+document.getElementById("shui").value=(parseFloat(a4)+parseFloat(b3)+parseFloat(c2)+parseFloat(d2)+parseFloat(e2)+parseFloat(f3)+parseFloat(g2)+parseFloat(h2))*parseFloat(i1)-parseFloat(i2); 	
+
+    var j1 = document.forms[9].SJF.value;
+    var j2 = document.forms[9].YJ.value;	
+document.getElementById("yj").value=parseFloat(a4)+parseFloat(b3)+parseFloat(c2)+parseFloat(d2)+parseFloat(e2)+parseFloat(f3)+parseFloat(g2)+parseFloat(h2)+parseFloat(i3)+parseFloat(j1); 
+}	
+	
+//生成表格
+	function scbg()
+{
+	var a=document.forms[0].CAI.value;
+	document.getElementById("c").innerHTML=liangwei(a);
+	
+	var b=document.forms[1].JIA.value;	document.getElementById("j").innerHTML=liangwei(b);
+	
+	var c=document.forms[2].FU.value;	
+	document.getElementById("f").innerHTML=liangwei(c);
+	
+	var d=document.forms[3].ZHUAN.value;	document.getElementById("z").innerHTML=liangwei(d);
+	
+	var e=document.forms[4].FEI.value;	document.getElementById("feip").innerHTML=liangwei(e);
+	
+	var f=document.forms[5].WAI.value;	document.getElementById("w").innerHTML=liangwei(f);
+	
+	var g=document.forms[6].BAO.value;	document.getElementById("b").innerHTML=liangwei(g);
+	
+	var h=document.forms[7].LI.value;	document.getElementById("l").innerHTML=liangwei(h);
+	
+	var i=document.forms[8].SHUI.value;	document.getElementById("s").innerHTML=liangwei(i);
+	
+	var j=document.forms[9].SJF.value;	document.getElementById("feib").innerHTML=liangwei(j);
+	
+	var k=document.forms[9].YJ.value;	document.getElementById("h").innerHTML=liangwei(k);
+	}	
+	
+//保留两位小数
+function liangwei(zifuchuan)
+{
+	var x=parseFloat(zifuchuan);
+	var x2=x.toFixed(2);
+	var hou=x-x2;
+	var lw=x-hou;
+	return lw;
+}
+	
+//实现在手机浏览器自动播放音乐
+	$(document).ready(function(){
+            autoPlayMusic();
+            audioAutoPlay();
+        });
+    function audioAutoPlay() {
+            var audio = document.getElementById('bg-music');
+            audio.play();
+            document.addEventListener("WeixinJSBridgeReady", function () {
+                audio.play();
+            }, false);
+        }
+
+ 	function autoPlayMusic() {
+// 解决浏览器或者APP自动播放问题
+    	function musicInBrowserHandler() {
+                musicPlay(true);
+                document.body.removeEventListener('touchstart', musicInBrowserHandler);
+        }
+            document.body.addEventListener('touchstart', musicInBrowserHandler);
+// 自动播放音乐效果，解决微信自动播放问题
+		function musicInWeixinHandler() {
+                musicPlay(true);
+                document.addEventListener("WeixinJSBridgeReady", function () {
+                    musicPlay(true);
+                }, false);
+                document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+        }
+            document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
+	}
+        
+	function musicPlay(isPlay) {
+            var media = document.querySelector('#bg-music');
+            if (isPlay && media.paused) {
+                media.play();
+            }
+            if (!isPlay && !media.paused) {
+                media.pause();
+            }
+        }
+
+//jQuery实现在一个输入框输入结束后，按回车键光标跳到下一个输入框  
+    function focusNextNextInput(thisInput)  
+    {   
+        var inputs = document.getElementsByTagName("input");   
+        for(var i = 0;i<inputs.length;i++){   
+				if(thisInput == inputs[i]){   
+                inputs[i+2].focus(); break;   
+           		}   
+        }   
+    }
+	
+//jQuery实现在一个输入框输入结束后，按回车键光标跳到下一个的下一个输入框
+    function focusNextInput(thisInput)  
+    {   
+        var inputs = document.getElementsByTagName("input");   
+        for(var i = 0;i<inputs.length;i++){   
+				if(thisInput == inputs[i]){   
+                inputs[i+1].focus(); break;   
+           		}   
+        }   
+    }
+	
+//选择背景音乐
+$(document).ready(function(){
+  $("select").change(function(){
+    var s=$("select").val();
+	$("#bg-music").attr("src",s);
+	document.getElementById("bg-music").oncanplay=alert("音乐加载完毕~");  
+  });
+});
+
+function altermusic()
+{	
+	document.getElementById("bg-music").play();	
+}
+
+//隐藏计算器,播放器
+$(document).ready(function(){
+  $("#yincang").click(function(){
+    $("#jsq").toggle(1000);
+  });
+});
+$(document).ready(function(){
+  $("#yincang2").click(function(){
+    $("#bg-music").toggle(1000);
+  });
+});	
+</script>
+
+<!--网格样式表-->
+<style>
+.ui-block-a {
+    background-color:#FFFFCC;
+}
+.ui-block-b {
+    background-color:#CCFFFF;
+}
+	
+/*自定义主题*/
+.ui-bar-f {
+    color: white;
+    background-color:#FF9900;
+}
+	div{
+	color:#336699;
+	background-color:#FFFFCC;
+}
+</style>	
+
+</head>
+	
+<body>
+	
+<!--第一个page-->	
+<div data-role="page" id="pageone">
+  
+	<div data-role="header" data-theme="f">
+<a href="#pagethree" data-rel="popup" class="ui-btn ui-btn-icon-left">查看表格</a>
+  <h1>设备原价手机计算器</h1>
+  <a href="#myPanel1" class="ui-btn ui-icon-arrow-r ui-btn-icon-right">网页设计方案</a>
+	</div>
+	
+	<div data-role="main" class="ui-content  ">
+
+<div data-role="controlgroup" data-type="horizontal">	        
+<!--下拉菜单-->	
+ <select data-mini="true" data-native-menu="false" id="myList">
+    <option value="http://up.mcyt.net/?down/36216.mp3">曹操-林俊杰</option>	<option value="http://up.mcyt.net/?down/46104.mp3">等你下课</option>
+    <option value="http://up.mcyt.net/?down/34978.mp3">下一秒</option>
+    <option value="http://up.mcyt.net/?down/46496.mp3">纸短情长</option>
+    <option value="http://up.mcyt.net/?down/35315.mp3">美丽的神话</option>
+    <option value="http://up.mcyt.net/?down/43587.mp3">化身孤岛的鲸</option></select><a data-role="button" data-mini="true"  data-inline="true" id="queding" onClick="altermusic()">play</a>
+<a data-role="button" id="yincang" data-mini="true"  data-inline="true">隐藏计算器</a>
+<a data-role="button" id="yincang2" data-mini="true"  data-inline="true">隐藏播放器</a> 
+</div>	
+  
+<!--音乐播放器-->		
+<div>		
+<audio loop preload="auto" autoplay id="bg-music" controls src="http://up.mcyt.net/?down/36216.mp3">
+</audio>
+</div>
+
+
+
+	
+
+
+<!--计算器--> 
+<div margin="20px" id="jsq">		
+<p>注意：<br>请从上往下填写，按回车键可跳到下一空。<br>建议不使用手机qq浏览器。</p>
+<!--表单-->		
+<form>
+<div class="ui-field-contain">
+  <label>每吨材料综合价：元</label>
+	<input data-mini="true" data-shadow="false" type="text" name="MDC" onkeyup="compute()" placeholder="请输入.." autofocus data-clear-btn="true" onkeypress="if(event.keyCode==13) focusNextInput(this);">
+  <label>材料净质量：吨</label>
+	<input data-mini="true" data-shadow="false" type="text" name="CLJ" onkeyup="compute()" placeholder="请输入.." onkeypress="if(event.keyCode==13) focusNextInput(this);" data-clear-btn="true">
+  <label>加工损耗系数：%</label>
+  	<input data-mini="true" data-shadow="false" type="text" name="JGS" onkeyup="compute()" placeholder="请输入.." onkeypress="if(event.keyCode==13) focusNextNextInput(this);" data-clear-btn="true">
+  	<label><strong>材料费：元</strong></label>
+  	<input data-mini="true" data-shadow="false" type="text" name="CAI" id="cai" placeholder="不用输入" onkeypress="if(event.keyCode==13) focusNextInput(this);" data-clear-btn="true">
+	</div>
+</form>	
+
+
+<form>
+<div class="ui-field-contain">	
+  <label>设备每吨加工费：元</label>
+	<input data-mini="true" data-shadow="false" type="text" name="SBM" onkeyup="compute()" placeholder="请输入.." onkeypress="if(event.keyCode==13) focusNextInput(this);" data-clear-btn="true">
+
+  <label>设备总质量：吨</label>
+	<input data-mini="true" data-shadow="false" type="text" name="SBZ" onkeyup="compute()" placeholder="请输入.." onkeypress="if(event.keyCode==13) focusNextNextInput(this);" data-clear-btn="true">
+
+   	<label><strong>加工费：元</strong></label>
+  	<input data-mini="true" data-shadow="false" type="text" name="JIA" id="jia" placeholder="不用输入" onkeypress="if(event.keyCode==13) focusNextInput(this);" data-clear-btn="true">
+	</div>
+</form>	
+	
+
+<form><div class="ui-field-contain">
+  <label>辅助材料费指标：元</label>
+	<input data-mini="true" data-shadow="false" type="text" name="FZC" onkeyup="compute()" placeholder="请输入.." onkeypress="if(event.keyCode==13) focusNextNextInput(this);" data-clear-btn="true">
+
+   	<label><strong>辅助材料费：元</strong></label>
+  	<input data-shadow="false" type="text" name="FU" id="fu" placeholder="不用输入" onkeypress="if(event.keyCode==13) focusNextInput(this);" data-clear-btn="true">
+	</div>
+</form>	
+
+	
+<form><div class="ui-field-contain">
+  <label>专用工具费费率：%</label>
+	<input data-mini="true" data-shadow="false" type="text" name="ZFL" onkeyup="compute()" placeholder="请输入.." onkeypress="if(event.keyCode==13) focusNextNextInput(this);" data-clear-btn="true">
+
+   	<label><strong>专用工具费：元</strong></label>
+  	<input data-shadow="false" type="text" name="ZHUAN" id="zhuan" placeholder="不用输入" onkeypress="if(event.keyCode==13) focusNextInput(this);" data-clear-btn="true">
+	</div>
+</form>	
+	
+
+<form><div class="ui-field-contain">
+  <label>废品损失费费率：%</label>
+	<input data-mini="true" data-shadow="false" type="text" name="FFL" onkeyup="compute()" placeholder="请输入.." onkeypress="if(event.keyCode==13) focusNextNextInput(this);" data-clear-btn="true">
+
+   	<label><strong>废品损失费：元</strong></label>
+  	<input data-mini="true" data-shadow="false" type="text" name="FEI" id="fei"  placeholder="不用输入" onkeypress="if(event.keyCode==13) focusNextInput(this);" data-clear-btn="true"></div>
+</form>	
+	
+<form><div class="ui-field-contain">
+  <label>外购配套件价格：元</label>
+	<input data-mini="true" data-shadow="false" type="text" name="WJ" onkeyup="compute()" placeholder="请输入.." onkeypress="if(event.keyCode==13) focusNextInput(this);" data-clear-btn="true">
+
+  <label>外购配套件运杂费：元</label>
+	<input data-mini="true" data-shadow="false" type="text" name="WY" onkeyup="compute()" placeholder="请输入.." onkeypress="if(event.keyCode==13) focusNextNextInput(this);" data-clear-btn="true">	
+
+   	<label><strong>外购配套件费：元</strong></label>
+  	<input data-mini="true" data-shadow="false" type="text" name="WAI" id="wai" placeholder="不用输入" onkeypress="if(event.keyCode==13) focusNextInput(this);" data-clear-btn="true">
+	</div>
+</form>	
+	
+	
+<form><div class="ui-field-contain">
+  <label>包装费费率：%</label>
+	<input data-mini="true" data-shadow="false" type="text" name="BFL" onkeyup="compute()" placeholder="请输入.." onkeypress="if(event.keyCode==13) focusNextNextInput(this);" data-clear-btn="true">
+
+   	<label><strong>包装费：元</strong></label>
+  	<input data-mini="true" data-shadow="false" type="text" name="BAO" id="bao" placeholder="不用输入" onkeypress="if(event.keyCode==13) focusNextInput(this);" data-clear-btn="true">
+	</div>
+</form>	
+
+	
+<form><div class="ui-field-contain">
+  <label>利润率：%</label>
+	<input data-mini="true" data-shadow="false" type="text" name="LR" onkeyup="compute()" placeholder="请输入.." onkeypress="if(event.keyCode==13) focusNextNextInput(this);" data-clear-btn="true">
+
+   	<label><strong>利润：元</strong></label>
+  	<input data-mini="true" data-shadow="false" type="text" name="LI" id="li" placeholder="不用输入" onkeypress="if(event.keyCode==13) focusNextInput(this);" data-clear-btn="true">
+	</div>
+</form>	
+	
+	
+<form><div class="ui-field-contain">
+	<label>增值税率：%</label>
+  	<input data-mini="true" data-shadow="false" type="text" name="ZZSL" onkeyup="compute()" placeholder="请输入.." onkeypress="if(event.keyCode==13) focusNextInput(this);" data-clear-btn="true">
+
+  	<label>进项税额：元</label>
+	<input data-mini="true" data-shadow="false" type="text" name="JXSE" onkeyup="compute()" placeholder="请输入.." onkeypress="if(event.keyCode==13) focusNextNextInput(this);" data-clear-btn="true">
+
+   	<label><strong>税金：元</strong></label>
+    <input data-mini="true" data-shadow="false" type="text" name="SHUI" id="shui" placeholder="不用输入" onkeypress="if(event.keyCode==13) focusNextInput(this);" data-clear-btn="true"></div>
+</form>	
+	
+	
+<form><div class="ui-field-contain">
+  	<label>非标准设备设计费：元</label>
+	<input data-mini="true" data-shadow="false" type="text" name="SJF" onkeyup="compute()" placeholder="请输入.." data-clear-btn="true">
+<br>合计：<br>
+	
+	<label><strong>单台非标准设备原价：元</strong></label>
+  <input data-mini="true" data-shadow="false" type="text" name="YJ" id="yj" placeholder="不用输入" onkeypress="if(event.keyCode==13) focusNextInput(this);" data-clear-btn="true">
+	</div>
+</form>
+<p align="center">		  
+<a href="#pagethree" data-role="button" onClick="scbg()" data-inline="true" data-rel="popup">点我生成表格</a></p>
+	
+	</div>	
+		</div>
+	<div data-role="footer" data-theme="f">
+		<h2>©QUS15077 黄澄</h2>
+	</div>
+	<div data-role="panel" id="myPanel1" data-position="right" data-display="overlay">
+  	<h2>网页设计方案</h2>
+  	<div data-role="collapsibleset">
+      <div data-role="collapsible" data-mini="true">
+        <h3>网站目的</h3>
+        <p>方便造价员和投资方，在没有电脑和纸笔的情况下，进行设备价格估算。</p>
+      </div>
+      <div data-role="collapsible" data-mini="true">
+        <h3>网站类型</h3>
+        <p>移动端在线计算器</p>
+      </div>
+      <div data-role="collapsible" data-mini="true">
+        <h3>网站定位</h3>
+        <p>主要功能:计算国产的非标准的设备的原价。<br>
+			目标用户:造价员，工厂老板，房地产商。</p>
+      </div>
+      <div data-role="collapsible" data-mini="true">
+        <h3>同类网站分析</h3>
+        <p>比特币挖矿收益计算器<br>
+	该网站用td标签里嵌套input标签，来进行数据的读入，然后利用button发生onclick事件，调用js函数。</p>
+      </div>
+      <div data-role="collapsible" data-mini="true">
+        <h3>总结与修改</h3>
+        <p>设计过程中遇到的问题：<br>
+	1.计算器功能的实现。<br>
+		我一开始用的output做计算，但是我发现计算的结果不能保存在一个变量里。于是上百度找，找到用js做计算的一个方法，可将计算结果存在变变量var,在function内暂时不会被消灭。
+	<br><br>对表单输入值进行计算的js代码<br>
+	<code>
+	function compute()<br> 
+{ <br>
+    var a1 = document.forms[0].MDC.value;<br> 
+    var a2 = document.forms[0].CLJ.value; <br>
+    var a3 = document.forms[0].JGS.value;<br>
+    var a4 = document.forms[0].CAI.value;<br>
+document.getElementById("cai").value = parseFloat(a1) * parseFloat(a2)*(1+parseFloat(a3)/100); <br>
+}
+	</code>
+	<br><br>
+	2.音乐在手机浏览器上无法自动播放，参考csdn博客上的例子得到解决<br>
+	3.在输入框输入后按回车，无法自动跳到下个输入框，依然是通过搜索csdn博客的例子得到了解决，并且做了一点修改，新的js函数可以实现部分输入框可以跳到下下个输入框</p>
+      </div>
+      
+    </div>
+    <p>点击面板外可关闭面板</p>
+	</div>    
+
+<!--弹窗：表格-->
+<div data-role="popup" id="pagethree" class="ui-content" data-overlay-theme="b">
+	      
+<table width="200" border="1">
+  <tbody>
+    <tr>
+      <td>材料费</td>
+      <td id="c">&nbsp;</td>
+    </tr>
+    <tr>
+      <td>加工费</td>
+      <td id="j">&nbsp;</td>
+    </tr>
+    <tr>
+      <td>辅助材料</td>
+      <td id="f">&nbsp;</td>
+    </tr>
+    <tr>
+      <td>专用工具费</td>
+      <td id="z">&nbsp;</td>
+    </tr>
+    <tr>
+      <td>废品损失费</td>
+      <td id="feip">&nbsp;</td>
+    </tr>
+    <tr>
+      <td>外购配套件费</td>
+      <td id="w">&nbsp;</td>
+    </tr>
+    <tr>
+      <td>包装费</td>
+      <td id="b">&nbsp;</td>
+    </tr>
+    <tr>
+      <td>利润</td>
+      <td id="l">&nbsp;</td>
+    </tr>
+    <tr>
+      <td>税金</td>
+      <td id="s">&nbsp;</td>
+    </tr>
+    <tr>
+      <td>非标准设备设计费</td>
+      <td id="feib">&nbsp;</td>
+    </tr>
+    <tr>
+      <td>合计：设备原价</td>
+      <td id="h">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>	
+</div>	
+
+</body>
+</html>

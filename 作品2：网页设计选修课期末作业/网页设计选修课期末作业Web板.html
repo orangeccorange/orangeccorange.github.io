@@ -1,0 +1,431 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>国产非标准设备原价计算器</title>	
+
+<!-- meta使用viewport以确保页面可自由缩放 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- foundation -->	
+<link rel="stylesheet" href="https://cdn.bootcss.com/foundation/5.5.3/css/foundation.min.css">
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/foundation/5.5.3/js/foundation.min.js"></script>
+<script src="https://cdn.bootcss.com/foundation/5.5.3/js/vendor/modernizr.js"></script>
+	
+<!--angular-->
+<script src="https://cdn.bootcss.com/angular.js/1.4.6/angular.min.js"></script> 
+
+	
+<script>
+//在一个输入框输入结束后，按回车键光标跳到下一个输入框  
+function focusNextInput(thisInput)  
+{   
+    var inputs = document.getElementsByTagName("input");   
+    for(var i = 0;i<inputs.length;i++){   
+		if(thisInput == inputs[i]){   
+           inputs[i+1].focus(); break;   
+        }   
+    }   
+}
+	
+//隐藏计算器,播放器
+$(document).ready(function(){
+  $("#yincang").click(function(){
+    $("#jsq").toggle(1000);
+  });
+});
+$(document).ready(function(){
+  $("#yincang2").click(function(){
+    $("audio").toggle(1000);
+  });
+});	
+
+$(document).ready(function() {
+    $(document).foundation();
+});
+</script>
+
+<style>
+/*表格样式*/
+#myModal table, th , td  
+{
+border: 1px solid grey;
+border-collapse: collapse;
+padding: 5px;
+}
+#myModal table tr:nth-child(odd)	
+{
+background-color: #f1f1f1;
+}
+#myModal table tr:nth-child(even) 
+{
+background-color: #ffffff;
+}
+/*footer样式*/
+.jgxy
+{
+font-family: "微软雅黑";
+line-height: 22px;
+overflow: hidden;
+background-color: #333;
+bottom: 0;
+width: 100%;
+color:white;
+}
+	
+h4
+{
+color:orange;
+font-weight:bold;
+}
+</style>	
+
+</head>
+<!--angular应用程序-->
+<body ng-app=""  style="padding-top:10px;">
+<!--麦哲伦导航-->
+<div data-magellan-expedition="fixed">
+<nav class="top-bar" data-topbar>
+<ul class="title-area">
+<li class="name">
+<h1><a href="#">橘子的Website</a></h1></li>
+<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+</ul>
+<section class="top-bar-section">
+<ul class="left">
+<li data-magellan-arrival="page1"><a href="#page1">计算器</a></li>
+<li data-magellan-arrival="page2"><a href="#page2">网页设计方案</a></li>
+</ul>
+</section>
+</nav>
+</div>
+<!--网格系统-->
+<div class="row">
+<!-- 侧栏-->
+<div class="large-2 medium-2 columns" style="background-color:#f1f1f1;">
+<ul class="side-nav">
+<!--三个按钮-->
+<li><a id="yincang" class="button info">隐藏/显示计算器</a></li>
+<li><a id="yincang2" class="button warning">隐藏/显示播放器</a></li>
+<button type="button" class="button" data-reveal-id="myModal">点我查看公式</button>
+<li>
+<p align="center" style="color:#F08A24"><strong>参考网站</strong></p>
+  
+<a href="http://www.w3school.com.cn" target="_blank" class="th">
+<img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=4047346009,132037318&fm=27&gp=0.jpg"  width="1000px" height="1000px">
+</a>
+<li></li>
+<a href="https://blog.csdn.net" target="_blank" class="th">
+<img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2591627440,2371609101&fm=27&gp=0.jpg" >
+</a></li>
+
+<li>
+<p align="center" style="color:#F08A24"><br><strong>造价软件推荐</strong></p></li>
+  
+<a href="https://op-gtj.glodon.com/web/install/index.html" target="_blank" class="th">
+<img src="https://op-gtj.glodon.com/web/install/logo.png" >
+</a>
+<li><p align="center">广联达土建计量GTL2018学习版<br></p></li>
+  
+<a href="https://pan.baidu.com/s/1-c4atJpwzLbOGshrTo1OAA#list/path=%2F" target="_blank" class="th">
+<img src="http://www.lubansoft.com/uploads/1485136452.png"  width="1000px" height="1000px">
+</a>
+<li><p align="center">鲁班土建<br></p></li>
+  
+<a href="https://www.autodesk.com.cn/products/revit/overview?referrer=%2Fproducts%2Frevit%2Foverview" target="_blank" class="th" >
+<img src="https://damassets.autodesk.net/content/dam/autodesk/www/products/responsive-imagery/responsive-badges-compare/2019/revit-2019-badge-75x75.png" width="1000px" height="1000px">
+</a>
+<li><p align="center">Revit<br></p></li>
+<li>
+<p align="center" style="color:#F08A24"><strong>经典喜剧欣赏</strong></p></li>
+<a href="http://tv.sohu.com/20120630/n346958043.shtml?txid=9075b2a7de230eeef8505336cfdc34ae" target="_blank" class="th">
+<img src="https://imgsrc.baidu.com/baike/pic/item/b7fd5266d016092437fca16fd80735fae7cd34ec.jpg" alt="老友记" >
+</a>
+<li><p align="center">老友记<br></p></li>
+<a href="http://haokan.baidu.com/v?pd=wisenatural&vid=40902940811094496"  target="_blank" class="th">
+<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1528201054377&di=30b2208e850e77e7a6aaaaa1094f634e&imgtype=0&src=http%3A%2F%2Fzx.youdao.com%2Fzx%2Fwp-content%2Fuploads%2F2013%2F05%2Fmind-your-language.jpg" alt="mind your language">
+</a>
+<li><p align="center">mind your language<br></p></li>
+<a href="http://www.iqiyi.com/v_19rrj6rpxo.html?vfm=2008_aldbd" target="_blank" class="th">
+<img src="https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=cc642460a918972bb737089887a410ec/6a600c338744ebf8063e7c4bdbf9d72a6059a772.jpg" alt="家有儿女">
+</a>
+<li><p align="center">家有儿女<br></p></li>
+<a href="http://v.youku.com/v_show/id_XNDM0OTg5OTc2.html?tpa=dW5pb25faWQ9MTAzNzUzXzEwMDAwMV8wMV8wMQ&refer=baiduald1705" target="_blank" class="th">
+<img src="https://gss1.bdstatic.com/9vo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=c366e54f1c178a82da3177f2976a18e8/902397dda144ad3418c29804d2a20cf431ad8537.jpg" alt="炊事班的故事">
+</a>
+<li><p align="center">炊事班的故事<br></p></li>
+
+</ul></div>
+<!-- 主栏-->
+<div class="large-10  medium-10 columns">
+<!--对应导航的2个page -->	  
+<div style="padding:20px;height:1500px;" >	
+<!--page1 -->
+<!-- 下拉菜单控制的播放器-->	 
+<div ng-switch="myVar">	  
+<div ng-switch-when="cao">
+<audio autolay loop controls src="http://up.mcyt.net/?down/36216.mp3" ></audio>
+</div>
+<div ng-switch-when="deng">
+<audio autolay loop controls src="http://up.mcyt.net/?down/46104.mp3"></audio>
+</div>
+<div ng-switch-when="mei">
+<audio autolay loop controls src="http://up.mcyt.net/?down/35315.mp3"></audio>
+</div>
+<div ng-switch-when="zhi">
+<audio autolay loop controls src="http://up.mcyt.net/?down/46496.mp3"></audio>
+</div>	
+<div ng-switch-when="xia">
+<audio autolay loop controls src="http://up.mcyt.net/?down/34978.mp3"></audio>
+</div>	
+</div>
+<!--选择音乐的菜单-->
+<select ng-model="myVar">
+<option value="">请选择背景音乐</option>
+<option value="cao">曹操</option>
+<option value="deng">等你下课</option>
+<option value="mei">美丽的神话</option>
+<option value="zhi">纸短情长</option>
+<option value="xia">下一秒</option>	  
+</select>
+<!--计算器-->
+<h3 data-magellan-destination="page1">设备原价计算器</h3>
+<a name="page1"></a>
+<div>
+<!--计算器的面板-->
+<div class="panel" id="jsq">
+<!--提醒框-->		
+<div data-alert class="alert-box warning">
+请从上往下填写，按回车键可跳到下一空。建议使用谷歌浏览器。
+<a href="#" class="close">&times;</a>
+</div>
+<div class="row">
+<!-- 计算器的面板中的左栏-->
+<div class="large-6 medium-6 columns" >
+<!--表单输入部分-->
+<table >
+<tbody>
+<tr >
+<td ><span class="label">每吨材料综合价</span></td>
+<td ><input type="number" ng-model="mdc" autofocus placeholder="请输入.." onkeypress="if(event.keyCode==13) focusNextInput(this);"></td>
+<td >元</td>
+</tr>
+<tr >
+<td ><span class="label">材料净质量</span></td>	  
+<td ><input type="number" ng-model="clj" autofocus  placeholder="请输入.."  onkeypress="if(event.keyCode==13) focusNextInput(this);"></td>	
+<td >吨</td>	
+</tr>	
+<tr >
+<td ><span class="label">加工损耗系数</span></td>	  
+<td ><input type="number" ng-model="jgs"  placeholder="请输入.."   onkeypress="if(event.keyCode==13) focusNextInput(this);"></td>	
+<td >%</td>	
+</tr>		  
+<tr >
+<td ><span class="label">材料费</span></td><td >{{mdc*clj*(1+jgs/100)|currency:"￥"}}</td>
+<td >元</td>	
+</tr>		  
+<tr > 
+<td ><span class="label">设备每吨加工费</span></td>	  
+<td ><input type="number" ng-model="sbm" autofocus  placeholder="请输入.."   onkeypress="if(event.keyCode==13) focusNextInput(this);"></td>	
+      <td >元</td>			
+    </tr>
+    <tr > 
+<td ><span class="label">设备总质量</span></td>	  
+<td ><input type="number" ng-model="sbz"  placeholder="请输入.."   onkeypress="if(event.keyCode==13) focusNextInput(this);"></td>	
+      <td >吨</td>			
+    </tr>	  
+    <tr > 
+<td ><span class="label">加工费</span></td><td >{{sbm *sbz|currency:"￥"}}</td>	
+      <td >元</td>			
+    </tr>
+    <tr > 
+<td ><span class="label">辅助材料费指标</span></td>	  
+<td ><input type="number" ng-model="fzc" autofocus  placeholder="请输入.."   onkeypress="if(event.keyCode==13) focusNextInput(this);"></td>	
+      <td >元</td>			
+    </tr>	  
+    <tr > 
+<td ><span class="label">辅助材料费</span></td>	  
+<td >{{fzc*sbz|currency:"￥"}}</td>	
+<td >元</td>			
+</tr>
+<tr > 
+<td ><span class="label">专用工具费费率</span></td>	  
+<td ><input type="number" ng-model="zyg"  placeholder="请输入.."   onkeypress="if(event.keyCode==13) focusNextInput(this);"></td>	
+<td >%</td>			
+</tr>
+</tbody></table>
+</div>
+<!-- 计算器面板的右栏-->
+<div class="large-6 medium-6 columns" >
+<table><tbody>
+     <tr > 
+      <td ><span class="label">废品损失费费率</span></td>	  
+      <td ><input type="number" ng-model="fps"  placeholder="请输入.."   onkeypress="if(event.keyCode==13) focusNextInput(this);"></td>	
+      <td >%</td>			
+    </tr>	   
+	<tr > 
+      <td ><span class="label">外购配套件价格</span></td>	  
+      <td ><input type="number" ng-model="wgp" autofocus  placeholder="请输入.."   onkeypress="if(event.keyCode==13) focusNextInput(this);"></td>	
+      <td >元</td>			
+    </tr>		  
+    <tr > 
+      <td ><span class="label">外购配套件运杂费</span></td>	  
+      <td ><input type="number" ng-model="wgpt" autofocus  placeholder="请输入.."   onkeypress="if(event.keyCode==13) focusNextInput(this);"></td>	
+      <td >元</td>			
+    </tr>		  
+    <tr > 
+      <td ><span class="label">外购配套件费</span></td>	  
+      <td >{{wgp+wgpt|currency:"￥"}}</td>
+      <td >元</td>			
+    </tr>		
+    <tr > 
+      <td ><span class="label">包装费费率</span></td>	  
+      <td ><input type="number" ng-model="bzf"  placeholder="请输入.."   onkeypress="if(event.keyCode==13) focusNextInput(this);"></td>	
+      <td >%</td>			
+    </tr>
+    <tr > 
+      <td ><span class="label">利润率</span></td>	  
+      <td ><input type="number" ng-model="lrl"  placeholder="请输入.."   onkeypress="if(event.keyCode==13) focusNextInput(this);"></td>	
+      <td >%</td>			
+    </tr>		
+	<tr > 
+      <td ><span class="label">增值税率</span></td>	  
+      <td ><input type="number" ng-model="zzs"  placeholder="请输入.."   onkeypress="if(event.keyCode==13) focusNextInput(this);"></td>	
+      <td >%</td>		  
+    </tr>		  
+    <tr > 
+      <td ><span class="label">进项税额</span></td>	  
+      <td ><input type="number" ng-model="jxs" autofocus  placeholder="请输入.."   onkeypress="if(event.keyCode==13) focusNextInput(this);"></td>	
+      <td >元</td>		  
+    </tr>		  
+    <tr > 
+      <td ><span class="label">非标准设备设计费</span></td>	  
+      <td ><input type="number" ng-model="fbz" autofocus  placeholder="请输入.."   onkeypress="if(event.keyCode==13) focusNextInput(this);"></td>	
+      <td >元</td>		  
+    </tr>	  
+    <tr > 
+      <td ><span class="label">单台非标准设备原价</span></td>	  
+      <td >{{((((mdc*clj*(1+jgs/100)+sbm *sbz+fzc*sbz)*(1+zyg/100)*(1+fps/100)+wgp+wgpt)*(1+bzf/100)-wgp-wgpt)*(1+lrl/100)+wgp+wgpt)*(1+zzs/100)-jxs+fbz|currency:"￥"}}</td>	
+      <td >元</td>		  
+    </tr>	  
+	</tbody>
+</table></div></div>
+</div>
+<!--公式-->
+<div id="myModal" class="reveal-modal tiny" data-reveal>
+<p>单台非标准设备原价<br>={[(材料费＋加工费＋辅助材料费)×(1+专用工具费率)×(1+废品损失费率)+外购配套件费]×(1+包装费率)-外购配套件费｝×(1+利润率)+外购配套件费＋销项税额+非标准设备设计费</p>
+<a class="close-reveal-modal">&times;</a>
+</div>	
+<hr><br>
+<!--page2 -->
+<!--网页设计方案-->
+<h3 data-magellan-destination="page2">网页设计方案</h3>
+<a name="page2"></a>
+<ul class="accordion" data-accordion>
+<li class="accordion-navigation">
+<a href="#demo" style="text-decoration:none;">网站目的</a>
+<div id="demo" class="content active">
+<h4>网站类型</h4>
+在线计算器，包括手机端和PC端
+<h4>网站定位</h4>
+主要功能：计算国产非标准设备原价<br>
+目标用户：造价员，设备采购员
+<h4>同类网站分析</h4>
+比特币挖矿收益计算器：该网站用td标签里嵌套input标签作为表单，来进行数据的读入。然后利用button发生click事件，调用js函数进行就算。
+</div>
+</li>
+<li class="accordion-navigation">
+<a href="#demo2" style="text-decoration:none;">网站内容与结构</a>
+<div id="demo2" class="content active">
+<h4>灵感来源</h4>
+我来自工程造价专业，在学习设备原价计算的时候，觉得这一部分的计算特别繁琐，于是想做一个网页版的计算器。
+<h4>页面布局</h4>
+头部是foundation框架的麦哲伦导航，位置是固定的，会根据用户滚动当前展示的内容自动切换导航栏上的导航项<br>
+左边是侧边栏。<br>
+右边是计算器和网页设计方案。<br>
+底部是联系方式。
+<h4>整体架构</h4>
+整个body部分是一个angular应用程序。<br>选择背景音乐的下拉菜单，是利用angular插入audio标签和属性。<br>
+计算器是利用angular的数据绑定，并使用了angular过滤器，转换成货币格式。<br>
+网页设计方案是用了foundation的折叠块。<br>
+</div>
+  </li>
+  <li class="accordion-navigation">
+<a href="#demo3" style="text-decoration:none;">总结与修改
+</a>
+<div id="demo3" class="content active ">
+<h4>设计过程中遇到的问题</h4>
+遇到了很多问题<br>
+<strong>1.计算器实现</strong><br>
+一开始我尝试用js写,<br>
+<code>function compute()
+{ 
+var a1 = document.forms[0].MDC.value;
+var a2 = document.forms[0].CLJ.value; 
+var a3 = document.forms[0].JGS.value;
+var a4 = document.forms[0].CAI.value;
+document.getElementById("cai").value = parseFloat(a1) * parseFloat(a2)*(1+parseFloat(a3)/100); 
+} </code><br>
+但是我觉得这样代码不够简洁。<br>
+后来偶然看到angular可以做计算器，于是在电脑版用了angular<br>
+<h4>example</h4>
+价格计算器
+<div ng-init="quantity=1;price=5">
+数量： <input type="number"    ng-model="quantity">
+价格： <input type="number" ng-model="price">
+<p><b>总价：</b> {{ quantity * price }}</p>
+</div>
+<h4>example end</h4><br>
+<strong>2.下拉菜单选背景音乐</strong><br>
+在图书馆看到一本jQuery mobile的书，<br>
+书里介绍了一个用下拉菜单来选择弹窗动画效果的例子，<br>
+于是我就想用下拉菜单选背景音乐。<br>
+经过一番debug，<br>在手机端用了js修改src的值为select选中项的value（事先将value设为歌曲对应的MP3链接）。<br>
+在电脑版里用ng-switch 指令，根据下拉菜单的选择结果，显示或隐藏 HTML 区域。<br>
+<h4>example</h4>
+<form>
+  选择一个选项:
+  <select ng-model="myar">
+    <option value=""></option>
+    <option value="dogs">Dogs</option>
+    <option value="tuts">Tutorials</option>
+    <option value="cars">Cars</option>
+  </select>
+</form>
+<div ng-switch="myar">
+  <div ng-switch-when="dogs">
+     <h1>Dogs</h1>
+     <p>Welcome to a world of dogs.</p>
+  </div>
+  <div ng-switch-when="tuts">
+     <h1>Tutorials</h1>
+     <p>Learn from examples.</p>
+  </div>
+  <div ng-switch-when="cars">
+     <h1>Cars</h1>
+     <p>Read about cars.</p>
+  </div>
+</div>
+<h4>example end</h4>
+<br>
+<h4>未能达成的想法</h4>
+想做一个播放器
+<h4>未来规划</h4>
+想要学习PHP和Jakarta
+    </div>
+  </li>
+</ul>	
+</div>
+<p class="text-center jgxy">
+	  版权所有 © 工程造价QUS15077  黄澄<br>
+	  通信地址：福建漳州招商局经济技术开发区厦门大学嘉庚学院<br>
+	  邮政编码：363105；E-mail: QUS15077@xujc.com<br>
+	  南光园区ICP：D200362<br>
+</p></div>
+</div>
+<!--主栏结束-->
+</div>
+<!--网格结束-->
+</body>
+</html>
