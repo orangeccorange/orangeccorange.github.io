@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <title>EnglandMobile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/england.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery_002.js"></script>
+    <script src="js/jquery.js"></script>
+    <script>
+        $(function(){
+            $('.slider,#menu-bar').show();
+
+            $('#slider2').slideReveal({
+                trigger: $("#trigger2"),
+                position: "right",
+                push: true
+            });
+
+            var slider = $("#menu-bar").slideReveal({
+                // width: 100,
+                push: false,
+                position: "right",
+                // speed: 600,
+                trigger: $(".handle"),
+                // autoEscape: false,
+                shown: function(obj){
+                    obj.find(".handle span").removeClass("arr_l").addClass("arr_r");
+                    obj.addClass("left-shadow-overlay");
+                },
+                hidden: function(obj){
+                    obj.find(".handle span").removeClass("arr_r").addClass("arr_l");
+                    obj.removeClass("left-shadow-overlay");
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        function IsPC() {
+            var userAgentInfo = navigator.userAgent;
+            var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPod"];
+            var flag = true;
+            for (var v = 0; v < Agents.length; v++) {
+                if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                    flag = false;
+                    break;
+                }
+            }
+            return flag;
+        }
+        var flag = IsPC();
+        //if(!flag){
+        //    window.location.href="http://u.ciguang.tv/u/18qm";
+        //}
+        // 如要把iPad放在手机端，则加一个"iPad"
+    </script>
+</head>
+
+<body>
+<div class="sharebox">
+    <ul >
+        <li><a title="分享到微信" onClick="javascript:bShare.share(event,'weixin',0);return false;"><img src="images/wechat.png"  title="微信"/></a></li>
+        <li><a title="分享到新浪微博" onClick="javascript:bShare.share(event,'sinaminiblog',0);return false;"><img src="images/sinablog.png" title="新浪微博"/></a></li>
+        <li><a title="分享到QQ空间" onClick="javascript:bShare.share(event,'qzone',0);return false;"><img src="images/qzone.png"  title="QQ空间"/></a></li>
+        <li><a title="分享到QQ微博" onClick="javascript:bShare.share(event,'qzone',0);return false;"><img src="images/tcblog.png" title="QQ微博"/></a></li>
+    </ul>
+</div>
+
+<div id="mainpic">
+    <div class="bgpic"></div>
+    <div class="thispic01"></div>
+
+    <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#uuid=d120a63f-65f3-4caa-aecd-f1472acc6d83&style=-1"></script>
+    <script type="text/javascript" charset="utf-8">
+        bShare.addEntry({
+            title: "歲次戊戌香港清明祭祖護國息災超薦繫念法會",
+            url: "http://u.ciguang.tv/u/18qm",
+            summary: "2018年4月 香港 歲次戊戌香港清明祭祖護國息災超薦繫念法會",
+            pic: "http://hk.ciguang.tv/images/thumbs.jpg"
+        });
+    </script>
+</div>
+
+<div id="header">
+    <div class="daohang">
+        <a class="title2 active" href="index.html">首页</a>
+        <a class="title2" href="videolist.html">视频报道</a>
+        <a class="title2" href="photolist.html">图文报道</a>
+        <a class="title2" href="timetable.html">时间表</a>
+    </div>
+</div>
+
+
+<div id="shouboB"><div id="playercontainer" ></div>
+    <script type="text/javascript" src="js/cyberplayer.js"></script>
+    <script>
+
+        var player_tn = null;
+        var is_check_tn = false;
+        var buf_tn = 0;
+        function video_tn(){
+            player_tn = cyberplayer("playercontainer").setup({
+                width: '100%',
+                //height: '600',
+                file: 'http://live.ciguang.tv/hdtv/sanshi.flv', // <—rtmp or flv直播地址
+                fallbackfile: "http://live.ciguang.tv/hdtv/sanshi.m3u8", // <— 手机上hls直播流
+                autostart: true,
+                stretching: "uniform",
+                volume: 100,
+                controls: true,
+                controlbar: {
+                    barLogo: false, // 进度条上的logo显示与否,默认true
+                },
+                playlist: [
+                    {
+                        sources: [
+                            {
+                                file: "http://live.ciguang.tv/hdtv/sanshi.flv", // 资源1 支持mp4, hls, flv等常用视频格式
+                                label: "超清" // 标签
+                            },
+                            {
+                                file: "http://live.ciguang.tv/hdtv/sanshi_hd.flv", // 资源2 必须与资源1格式和时长一致！
+                                label: "高清"
+                            },
+                            {
+                                file: "http://live.ciguang.tv/hdtv/sanshi_sd.flv", // 资源2 必须与资源1格式和时长一致！
+                                label: "标清"
+                            },
+                            {
+                                file: "http://live.ciguang.tv/hdtv/sanshi_ld.flv", // 资源2 必须与资源1格式和时长一致！
+                                label: "流暢"
+                            }
+                        ]
+                    }
+                ],
+                rightclick: [ // 右键配置
+                    {
+                        title: "今現在說法", // 标题1
+                        link: "https://www.amtbhk.com" // 跳转链接
+                    },
+                    {
+                        title: "慈光講堂",
+                        link: "https://www.ciguang.tv"
+                    }
+                ],
+                rtmp: {
+                    reconnecttime: 5, // rtmp直播的重连次数
+                    bufferlength: 0 // 缓冲多少秒之后开始播放 默认1秒
+                },
+                ak: "8dd63cf4ef3541bc9bd845d40bf5942d" // 公有云平台注册即可获得accessKey
+            });
+
+            player_tn.onPlay(function(){
+                if(!is_check_tn){
+                    is_check_tn = true;
+                    check_tn();
+                }
+            });
+        }
+
+
+        function check_tn(){
+            var state = player_tn.getState();
+            if(state == "buffering" && player_tn){
+                buf_tn++;
+                if(buf_tn > 3)state = "error";
+            }
+            if(state == "error" && player_tn){
+                //player_tn.remove();
+                //video_tn();
+            }
+            console.log("tn_" + state);
+            if(is_check_tn){
+                setTimeout("check_tn()",3000);
+            }
+        }
+
+        video_tn();
+    </script>
+    <div id="slider2" class="slider">
+        <h1>4月5日（香港時間）</h1>
+        <ul class="timeList2">
+            <li><span>07:30 - 08:30</span><p>進場</p></li>
+            <li><span>08:45 - 09:45</span><p>祭祖的意義</p></li>
+            <li><span>09:45 - 10:00</span><p>禮儀解說<br>嘉賓進場</p></li>
+            <li><span>10:00 - 11:30</span><p>祭祖大典 <font  class="small">（一小時三十分鐘）</font></p></li>
+            <li><span>11:30 - 13:30</span><p>午齋 <font  class="small">（二小時）</font><br>聽經共修</p></li>
+            <li><span>13:30 - 13:40</span><p>迎請法師</p></li>
+            <li><span>13:40 - 14:00</span><p>三皈傳授</p></li>
+            <li><span>14:00 - 15:00</span><p>《淨土集——印光大師法語菁華》<br>講著：上悟下道法師</p></li>
+            <li><span>15:00 - 15:30</span><p>休息 <font  class="small">(三十分鐘)</font></p></li>
+            <li><span>15:30 - 16:30</span><p>《淨土集——印光大師法語菁華》<br>講著：上悟下道法師</p></li>
+            <li><span>16:30 - 17:00</span><p>休息 <font  class="small">(三十分鐘)</font></p></li>
+            <li><span>17:00 - 18:00</span><p>《淨土集——印光大師法語菁華》<br>講著：上悟下道法師</p></li>
+            <li><span>18:00 - 18:30</span><p>圓滿日致詞</p></li>
+            <li><span>18:30</span><p>圓滿</p></li>
+        </ul>
+    </div>
+    <button id="trigger2" class="trigger">今<br>日<br>直<br>播<br>时<br>间<br>表</button></div>
+
+<div id="footer" >
+    <img src="images/hk_logo@2x.png" class="xiehui">
+    <img src="images/footer.png" style="margin: 10px auto;height: 10px;"></div>
+</body>
+</html>

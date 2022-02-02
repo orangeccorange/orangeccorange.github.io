@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>EnglandMobile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/england.css" rel="stylesheet" type="text/css">
+
+
+    <script type="text/javascript">
+        function IsPC() {
+            var userAgentInfo = navigator.userAgent;
+            var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPod"];
+            var flag = true;
+            for (var v = 0; v < Agents.length; v++) {
+                if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                    flag = false;
+                    break;
+                }
+            }
+            return flag;
+        }
+        var flag = IsPC();
+        if(!flag){
+            window.location.href="http://u.ciguang.tv/u/18qm";
+        }
+        // 如要把iPad放在手机端，则加一个"iPad"
+    </script>
+</head>
+
+<body>
+<div class="sharebox">
+    <ul >
+        <li><a title="分享到微信" onClick="javascript:bShare.share(event,'weixin',0);return false;"><img src="images/wechat.png"  title="微信"/></a></li>
+        <li><a title="分享到新浪微博" onClick="javascript:bShare.share(event,'sinaminiblog',0);return false;"><img src="images/sinablog.png" title="新浪微博"/></a></li>
+        <li><a title="分享到QQ空间" onClick="javascript:bShare.share(event,'qzone',0);return false;"><img src="images/qzone.png"  title="QQ空间"/></a></li>
+        <li><a title="分享到QQ微博" onClick="javascript:bShare.share(event,'qzone',0);return false;"><img src="images/tcblog.png" title="QQ微博"/></a></li>
+    </ul>
+</div>
+<div id="mainpic">
+    <div class="bgpic"></div>
+    <div class="thispic01"></div>
+
+    <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#uuid=d120a63f-65f3-4caa-aecd-f1472acc6d83&style=-1"></script>
+    <script type="text/javascript" charset="utf-8">
+        bShare.addEntry({
+            title: "歲次戊戌香港清明祭祖護國息災超薦繫念法會",
+            url: "http://u.ciguang.tv/u/18qm",
+            summary: "2018年4月 香港 歲次戊戌香港清明祭祖護國息災超薦繫念法會",
+            pic: "http://hk.ciguang.tv/images/thumbs.jpg"
+        });
+    </script>
+</div>
+
+<div id="header">
+    <div  class="daohang">
+    <a class="title2" href="index.html">首页</a>
+    <a class="title2" href="videolist.html">视频报道</a>
+    <a class="title2 active" href="photolist.html">图文报道</a>
+    <a class="title2" href="timetable.html">时间表</a>
+    </div>
+</div>
+
+
+<div class="photolist">
+    <a href="view.html" ><img src="images/pic01_thm.png"><p>此处是标题</p></a>
+    <a href="view.html" ><img src="images/pic01_thm.png"><p>此处是标题</p></a>
+    <a href="view.html" ><img src="images/pic01_thm.png"><p>此处是标题</p></a>
+    <a href="view.html" ><img src="images/pic01_thm.png"><p>此处是标题</p></a>
+    <a href="view.html" ><img src="images/pic01_thm.png"><p>此处是标题</p></a>
+    <a href="view.html" ><img src="images/pic01_thm.png"><p>此处是标题</p></a>
+</div>
+
+<div id="footer" >
+    <img src="images/hk_logo@2x.png" class="xiehui">
+    <img src="images/footer.png" style="margin: 10px auto;height: 10px;">
+</div>
+</body>
+</html>
