@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<style>
+img {
+    display: block;
+    margin: 0 auto;
+}
+
+
+</style>
+</head>
+<body>
+
+<div data-role="page" id="pageone">
+  <div data-role="header" style="color:blue">
+    <h1>欢迎访问我的主页</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+ <img src="http://static.runoob.com/images/mix/paris.jpg" alt="Paris" >   
+	
+	<div data-role="navbar" data-iconpos="left">
+      
+      <ul>
+        <li><a href="#myPopup" data-rel="popup" data-icon="gear">专业设置</a></li>
+        <li><a data-icon="gear" href="#myPanel">师资情况</a></li>
+      </ul>      
+	    <ul>
+        <li><a href="#pagetwo" data-icon="gear">新闻中心</a></li>
+        <li><a href="#" data-icon="gear">不要点我</a></li>
+      </ul>    </div>
+	  
+	<div data-role="popup" id="myPopup" class="ui-content">
+      <h3>具体情况</h3>
+       <div data-role="collapsibleset">
+      <div data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u">
+        <h3>点击我 - 我可以折叠！</h3>
+        <p>我是可折叠的内容。</p>
+      </div>
+      <div data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right">
+        <h3>点击我 - 我可以折叠！</h3>
+        <p>我是可折叠的内容。</p>
+      </div>
+      <div data-role="collapsible">
+        <h3>点击我 - 我可以折叠！</h3>
+        <p>我是可折叠的内容。</p>
+      </div>
+      <div data-role="collapsible">
+        <h3>点击我 - 我可以折叠！</h3>
+        <p>我是可折叠的内容。</p>
+      </div>
+    </div>
+    </div>  
+
+  </div>
+
+  <div data-role="footer" style="color:red">
+    <h1>我的底部</h1>
+  </div>
+  
+ <div data-role="panel" id="myPanel" data-theme="b"> 
+    <h2>学院师资</h2>
+    <div class="ui-grid-c">
+      <div class="ui-block-a">
+        <a href="#" class="ui-btn ui-corner-all ui-shadow">一</a><br>
+        <span>第一列: 这是一些文本。 这是一些文本。 这是一些文本。 这是一些文本。 这是一些文本。</span>
+      </div>
+      <div class="ui-block-b">
+        <a href="#" class="ui-btn ui-corner-all ui-shadow">二</a><br>
+        <span>第二列: 这是一些文本。 这是一些文本。 这是一些文本。 这是一些文本。</span>
+      </div>
+      <div class="ui-block-c">
+        <a href="#" class="ui-btn ui-corner-all ui-shadow">三</a><br>
+        <span>第三列: 这是一些文本。 这是一些文本。 这是一些文本。 这是一些文本。</span>
+      </div>
+      <div class="ui-block-d">
+        <a href="#" class="ui-btn ui-corner-all ui-shadow">四</a><br>
+        <span>第四列: 这是一些文本。 这是一些文本。 这是一些文本。 这是一些文本。</span>
+      </div>  
+    </div>
+  </div>  
+</div> 
+<div data-role="page" id="pagetwo">
+
+<div data-role="header" style="color:blue">
+    <h1>欢迎访问我的主页</h1>
+</div>
+
+  <div data-role="main" class="ui-content">
+     <div data-role="collapsibleset">
+      <div data-role="collapsible">
+	  <h3>点击我 - 我可以折叠！</h3>
+        <ul data-role="listview" data-inset="true">
+      <li data-role="list-divider">本周动态</li>
+	  <li>
+        <a href="#">
+        <img src="/try/demo_source/chrome.png">
+        <h2>Google Chrome</h2>
+        
+        </a>
+      </li>
+      <li>
+        <a href="#">
+        <img src="/try/demo_source/firefox.png">
+        <h2>Mozilla Firefox</h2>
+        
+        </a>
+      </li>
+    </ul>
+	<ul data-role="listview" data-inset="true">
+      <li data-role="list-divider">上周动态</li>
+	  <li>
+        <a href="#">
+        <img src="/try/demo_source/chrome.png">
+        <h2>Google Chrome</h2>
+        
+        </a>
+      </li>
+      <li>
+        <a href="#">
+        <img src="/try/demo_source/firefox.png">
+        <h2>Mozilla Firefox</h2>
+        
+        </a>
+      </li>
+    </ul>
+      </div>
+      
+      <div data-role="collapsible">
+        <h3>点击我 - 我可以折叠！</h3>
+        <ul data-role="listview" data-inset="true">
+      <li data-role="list-divider">今日头条</li>
+      <li><a href="#">管理学院新增一教学实践基地</a></li>
+      <li><a href="#">英国</a></li>
+      <li data-role="list-divider">亚洲</li>
+      <li><a href="#">中国</a></li>
+      <li><a href="#">印度</a></li>
+      <li data-role="list-divider">非洲</li>
+      <li><a href="#">埃及</a></li>
+      <li><a href="#">南非</a></li>
+    </ul>
+<ul data-role="listview" data-inset="true">
+      <li data-role="list-divider">往日头条</li>
+      <li><a href="#">管理学院新增一教学实践基地</a></li>
+      <li><a href="#">英国</a></li>
+      <li data-role="list-divider">亚洲</li>
+      <li><a href="#">中国</a></li>
+      <li><a href="#">印度</a></li>
+      <li data-role="list-divider">非洲</li>
+      <li><a href="#">埃及</a></li>
+      <li><a href="#">南非</a></li>
+    </ul>      </div>
+    </div>
+  </div>
+
+  <div data-role="footer" style="color:red">
+    <h1>我的底部</h1>
+  </div>
+
+</div>
+</body>
+</html>
